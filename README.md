@@ -1,4 +1,10 @@
-# Getting Started with Create React App
+# Django 
+
+## requirements
+1) Cors Headers
+2) Django Rest Framework (DRF)
+
+# Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
