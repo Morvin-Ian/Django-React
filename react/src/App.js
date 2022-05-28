@@ -44,7 +44,7 @@ function App() {
     }
 
     const addBook = async (book_name, description) => {
-      const id = book_name.length ? books[books.length-1].id+1: 1;
+      const id = books.length ? books[books.length-1].id+1: 1;
       const newBook = {id, book_name, description };
       const listBooks = [...books, newBook]; 
   
