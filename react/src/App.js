@@ -3,7 +3,7 @@ import './index.css';
 import Header from './Header';
 import BookList from './BookList';
 import Addbook from './Addbook';
-import Updatebook from './Updatebook';
+
 
 
 import axios from 'axios'
@@ -18,8 +18,6 @@ function App() {
   const [newBook, setNewBook] = useState("");
   const [newBookDesc, setNewBookDesc] = useState("");
   
-  const [editBook, setEditBook] = useState("");
-  const [editBookDesc, setEditBookDesc] = useState("");
 
   const apiUrl = 'http://127.0.0.1:8000/api/book'
 
@@ -40,6 +38,7 @@ function App() {
       try{
         const response = await AxiosBook.get("/book")
         setBooks(response.data);
+    
 
       }
       catch(err){
@@ -89,7 +88,7 @@ function App() {
     // })
 
     // axios 
-    const response = await AxiosBook.delete(`/book/delete/${id}/`)
+      await AxiosBook.delete(`/book/delete/${id}/`)
       setBooks(listBooks)
     }
 
@@ -129,27 +128,7 @@ function App() {
   
     }
 
-    const bookEdit = async (book_name, description) => {
-      const id = books.length ? books[books.length-1].id+1: 1;
-      const updatedBook = {id, book_name:book_name, description:description}
-      try{
-        const response = await AxiosBook.put(`/book/update/${id}`, updatedBook)
-        setBooks(books.map(book=> book.id === id ? {...response.data}:book))
-        setEditBook('')
-        setEditBookDesc('')
-      }catch(err){
-        console.log(err.message)
-      }
-    }
 
-    const handleEdit = (e) => {
-      e.preventDefault();
-      if (!editBook) return;
-        bookEdit(editBook, editBookDesc)
-        setEditBook('')
-        setEditBookDesc('')
-  
-    }
   
   
 
@@ -183,15 +162,6 @@ function App() {
 
         />}/>
 
-        <Route path='/update/:id' element={<Updatebook
-            books={books}
-            editBook={editBook}
-            setEditBook={setEditBook}
-            editBookDesc={editBookDesc}
-            setEditBookDesc={setEditBookDesc}
-            handleEdit={handleEdit}
-        
-          />}/>
 
       
         </Routes>

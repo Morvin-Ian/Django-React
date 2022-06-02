@@ -9,7 +9,7 @@ const BookList = ({books, deleteBook}) => {
         <ul className='booklist'> 
       
             {books.map(book=>(
-                <li key={book.id}> <Link className='booklist' to={`/update/${book.id}`}> {book.book_name} </Link>
+                <li key={book.id}> {book.book_name}
                           <button onClick={()=>deleteBook(book.id)} type='submit'>X</button>  <hr/>
                 </li> 
         ))}
